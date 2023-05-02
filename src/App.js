@@ -1,24 +1,52 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+
+
 import './App.css';
 
+// Custom Components.
+import Login from './Components/Login/Login';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Project from './Components/Project/Project';
+
+
+
+
 function App() {
+
+
+  // Variable booleana indica si estaria editando un proyecto o agregando uno nuevo.
+
+  const [newProject, setNewProject] = useState(true)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+
+          <Route path='/' element={<Navigate to='/login' />} />
+
+          <Route path='/login'
+            element={<Login />
+            } />
+
+          <Route path='/dashboard'
+            element={<Dashboard
+              setNewProject={setNewProject}
+            />} />
+
+
+          <Route path='/project'
+            element={<Project
+              newProject={newProject}
+              setNewProject={setNewProject}
+            />} />
+
+        </Routes>
+
+      </BrowserRouter>
+    </>
   );
 }
 

@@ -1,0 +1,4 @@
+{
+  "expressServer" : "http://localhost:3001",
+  "ServerHeroku": "https://server-inventory.herokuapp.com"
+}
